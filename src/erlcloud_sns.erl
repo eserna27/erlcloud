@@ -337,12 +337,9 @@ publish(Type, RecipientArn, Message, Subject, Config) ->
         end,
     MessageParams =
         case Message of
-            [{_,_} |_] ->
-                EncodedMessage = jsx:encode(Message),
-                [{"Message",            EncodedMessage},
-                 {"MessageStructure",   "json"}];
             Message ->
-                [{"Message", Message}]
+                [{"Message", Message},
+                 {"MessageStructure",   "json"}]
         end,
     SubjectParam =
         case Subject of
